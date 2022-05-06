@@ -1,3 +1,6 @@
+#!/usr/bin/env Rscript
+args = commandArgs(trailingOnly=TRUE)
+
 packages <- c("data.table","tidyverse","skimr","here","haven")
 
 for (package in packages) {
@@ -103,9 +106,4 @@ nodes_ <- list(W = names(a)[1:12],
 
 # RUN TMLE3 FOR BOTH FRUIT AND VEGETABLES 
 tmle_fit_ <- tmle3(ate_spec, a, nodes_fruit, learner_list)
-saveRDS(tmle_fit_fruit, "tmle3_fruit_pree_v4_cont_fixedcov_missind_0_new.rds")
-beep("mario")
-
-tmle_fit_veg <- tmle3(ate_spec, analysis, nodes_veg, learner_list)
-saveRDS(tmle_fit_veg, "tmle3_veg_pree_v4_cont_fixedcov_missind_0_new.rds")
-beep("mario")
+saveRDS(tmle_fit_fruit, here("misc","tmle_fit-preliminary.rds"))
